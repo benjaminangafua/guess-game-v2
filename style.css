@@ -1,0 +1,77 @@
+*, ::before, ::after{
+    box-sizing: border-box;
+}
+:root{
+    --teal-color: teal;
+    --green:  hsl(146, 81%, 8%);
+    --aquamarine: rgba(255, 166, 0, 0.281);
+    --white: hsl(0, 0%, 100%);
+    --white-shadow: hsl(0, 7%, 92%);
+    --black: black;
+    --padding-size: 1.25rem;
+}
+
+.header{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(6rem, 2fr));
+    gap: 10% 20%; 
+} 
+.chances { 
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(30%, 1fr)); 
+    box-shadow: 1px 1px 1px var(--white-shadow);
+    background-color: var(--aquamarine);
+}
+ .chances :nth-child(1),.start-game :nth-child(2){
+    background-color: var(--white-shadow);
+    color: var(--black);
+}
+
+.start-game{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(30%, 1fr)); 
+    box-shadow: 1px 1px 1px var(--white-shadow);
+    background-color: var(--aquamarine);
+}
+
+.start-game>*, .chances>*{
+    display: grid;
+    place-content: center;
+    padding: var(--padding-size); 
+    cursor: pointer;
+}
+
+.start-game :nth-child(1),.chances :nth-child(2){
+    background-color: var(--aquamarine);
+    color: var(--black);
+
+}
+.result{
+    display: grid;
+    place-items: center;
+    background-color: var(--white-shadow);
+    height: 3rem;
+    margin: 3rem 20%;
+
+}
+#guess-board{
+    display: flex; 
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+}
+#guess-board > *{
+    flex-basis: 4rem; 
+}
+.num-guess{
+    flex-basis: 5%; 
+    display: grid;
+    justify-items: center; 
+    box-shadow: 0px 0px 9px rgba(211, 214, 214, 0.829);
+    padding: 18px;
+}
+
+.bg{
+    background-color: var(--aquamarine);
+
+}
