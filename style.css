@@ -10,15 +10,21 @@
     --black: black;
     --padding-size: 1.25rem;
 }
-
+body{
+    margin: 0;
+    padding: 0;
+}
+.container{
+    padding: 10px clamp(.72rem, 20px, 5%);
+}
 .header{
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(6rem, 2fr));
+    grid-template-columns: repeat(auto-fit, minmax(6rem, 1fr));
     gap: 10% 20%; 
 } 
 .chances { 
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(30%, 1fr)); 
+    grid-template-columns: repeat(auto-fit, minmax(4rem, 1fr)); 
     box-shadow: 1px 1px 1px var(--white-shadow);
     background-color: var(--aquamarine);
 }
@@ -29,7 +35,7 @@
 
 .start-game{
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(30%, 1fr)); 
+    grid-template-columns: repeat(auto-fit, minmax(4rem, 1fr)); 
     box-shadow: 1px 1px 1px var(--white-shadow);
     background-color: var(--aquamarine);
 }
@@ -50,8 +56,8 @@
     display: grid;
     place-items: center;
     background-color: var(--white-shadow);
-    height: 3rem;
-    margin: 3rem 20%;
+    height: clamp(3rem, 4vh, 4rem);
+    margin: 3rem clamp(min(1rem, 3rem), 10%, max(5%, 10%));
 
 }
 #guess-board{
