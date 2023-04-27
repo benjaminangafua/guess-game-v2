@@ -60,6 +60,7 @@ const checkForWin =(event, removeEvent)=>{
             event.target.style = `background: blue; color: white; cursor:not-allowed`
             guess.forEach (ele=>{
                 ele.style = `cursor:not-allowed`
+                //Support in removing click https://bobbyhadz.com/blog/javascript-remove-all-event-listeners-from-element
                 ele.replaceWith(ele.cloneNode(true))
             })
             console.log(event.target.innerHTML)

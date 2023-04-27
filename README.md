@@ -1,8 +1,8 @@
 ## Guess Game
 
-- [] Basic guess between 1 - 100
-- [] Have 9 chances of try
-- [] Add sound on every guess
+- [x] Basic guess between 1 - 100
+- [x] Have 10 chances of try
+- [x] Add failure sound on every guess
 
 ### Author: 
 > Benjamin A. Ngafua
