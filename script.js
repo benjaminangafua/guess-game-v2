@@ -46,31 +46,6 @@ const audio =[
     "./audio/you-are-a-failure.m4a"
 ]
 const voice=()=>(new Audio(audio[Math.floor(Math.random()*audio.length)]))
-    
-// Check For Win
-const checkForWin =(event, removeEvent)=>{
-    if(count >0){
-        result.innerHTML =event.target.innerHTML < random?"Too Low":event.target.innerHTML > random?"Too High":"Congrats"
-        if(event.target.innerHTML != random){
-            event.target.style = `background:gray; cursor:not-allowed`
-            event.target.disabled=true;
-            
-            voice().play() 
-        }else if(event.target.innerHTML == random) {
-            event.target.style = `background: blue; color: white; cursor:not-allowed`
-            guess.forEach (ele=>{
-                ele.style = `cursor:not-allowed`
-                //Support in removing click https://bobbyhadz.com/blog/javascript-remove-all-event-listeners-from-element
-                ele.replaceWith(ele.cloneNode(true))
-            })
-            console.log(event.target.innerHTML)
-            event.disabled=true;
-            voice().pause()
-        }
-   }else{
-        result.innerHTML =  "Time Elapses";
-    }
-}
 
 // Disable played number
 const disableAfterPlay = event=>{  
@@ -79,9 +54,39 @@ const disableAfterPlay = event=>{
     event.preventDefault()
     event.target.removeEventListener("click", disableAfterPlay) 
     checkForWin(event,  disableAfterPlay)
+}    
+// Check For Win
+function checkForWin (event, removeEvent){
+    if(count >0){
+        result.innerHTML =event.target.innerHTML < random?"Too Low":event.target.innerHTML > random?"Too High":"Congrats"
+        if(event.target.innerHTML != random){
+            event.target.style = `background:gray; cursor:not-allowed`
+            event.target.disabled=true;
+            voice().pause()
+            voice().play() 
+        }else if(event.target.innerHTML == random) {
+            guess.forEach (ele=>{
+                ele.style.cursor = `not-allowed`
+                ele.removeEventListener("click", disableAfterPlay)
+                // ele.replaceWith(ele.cloneNode(true))
+            }) 
+            event.disabled=true;
+            event.target.style = `background: blue; color: white; cursor:not-allowed;`
+            voice().pause()
+        }
+   }else{
+        result.innerHTML =  "Time Elapses";
+    }
 }
+
+document.addEventListener("keydown", (e)=>{ 
+    guess.forEach(ele=>{
+        if(ele.textContent==e.key){
+           return ele.addEventListener("click", disableAfterPlay)            
+        }
+    })
+})
 guess.forEach(ele=>ele.addEventListener("click", disableAfterPlay) )
- 
 
 restart.addEventListener("click", ()=>{
     guess.forEach(element=>{
@@ -89,7 +94,9 @@ restart.addEventListener("click", ()=>{
         element.style.background = "none" 
         // element.classList.toggle("bg");
         element.style.cursor="pointer";
+        result.innerHTML=""
     })
     random = Math.floor(Math.random()*100)+1;
     chance.innerHTML = count =10;
 })
+
